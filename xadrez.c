@@ -1,58 +1,69 @@
 #include <stdio.h>
 
+// recursividade para os movimentos da torre
+void moverTorre (int casas) {
+    if (casas > 0){
+        printf("Direita\n");
+        moverTorre(casas - 1);
+        }
+}
+
+// recursividade para os movimentos do bispo
+void moverBispo (int casas) {
+    if (casas > 0){
+        printf("Cima\n");
+        if (casas > 0)
+        {
+            printf("Direita\n");
+        }
+        moverBispo(casas - 1);
+    }
+}
+
+// recursividade para os movimentos da rainha
+void moverRainha (int casas) {
+    if (casas > 0){
+        printf("Esquerda\n");
+        moverRainha(casas - 1);
+        }
+}
+
 int main() {
 
-    //variáveis das peças
-    int torre = 0, bispo = 0, rainha = 0, cavalo = 0;
 
-    // Indicação de que a torre está se movimentando
+    // Movimento da torre utilizando recursividade
     printf("*** Torre ***\n");
-
-    //Estrutura de movimentação da torre
-    while (torre < 5)
-    {
-        printf("Direita\n");
-        torre++;
-    }
+    moverTorre (5);
 
     printf("\n");
     
-    // Indicação de que o bispo está se movimentando
+    // Movimento do bispo utilizando recursividade
     printf("*** Bispo ***\n");
-
-    // Estrutura de movimentação do bispo
-    do {
-        printf("Diagonal cima/direita\n");
-        bispo++;
-    } while (bispo < 5);
+    moverBispo(5);
 
     printf("\n");
 
-    // Indicação de que a rainha está se movimentando
+    // Movimento da rainha utilizando recursividade
     printf("*** Rainha ***\n");
-
-    // Estrutura de movimentação da rainha
-    for (rainha; rainha < 8; rainha++) {
-        printf("Esquerda\n");
-    }
+    moverRainha (8);
 
     printf("\n");
 
-    // Indicação da movimentação do cavalo
+    // Movimento do cavalo com loops aninhados e diversas variáveis e condições
     printf("*** Cavalo ***\n");
-
-    // Estrutura de movimentação do cavalo com loop aninhado
-    while (cavalo < 1)
-    {
-        for (cavalo; cavalo < 2; cavalo++)
-        {
-            printf("Baixo\n");
-        }
-        printf("Esquerda\n");
-        cavalo++;
-        printf("\n");
-    }
     
+    for (int MovCavaloDir = 0, MovCavaloCima = 0; MovCavaloDir < 5; MovCavaloDir++, MovCavaloCima++) {
+
+        if (MovCavaloCima < 2) {
+            printf("Cima\n");
+            continue; // volta para o próximo ciclo
+        }
+
+        if (MovCavaloCima== 2) {
+            printf("Direita\n");
+            break; // sai do laço
+        }
+    }
 
     return 0;
 }
